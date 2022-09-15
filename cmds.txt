@@ -1,0 +1,9 @@
+https://blog.logrocket.com/how-to-set-up-node-typescript-express/#create-express-server-extension
+
+npm run dev to start server
+npm init --y //inits package.json
+npm install express dotenv //for .env file
+//node index.js to start simple file
+npm i -D typescript @types/express @types/node
+npx tsc --init //inits tsconfig.json for compiling configs
+npm install -D concurrently nodemon

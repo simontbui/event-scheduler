@@ -27,8 +27,6 @@ exports.getEvents = getEvents;
 const addEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
-        console.log(req.body);
-        console.log("===================================");
         const event1 = new event_1.default({
             firstName1: body.firstName1,
             lastName1: body.lastName1,
@@ -43,17 +41,17 @@ const addEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             lastName2: body.lastName1,
             time: body.time,
         });
-        const existingEvent = yield event_1.default.findOne({ event1 });
-        console.log(existingEvent);
+        const existingEvent = yield event_1.default.findOne(body);
         if (existingEvent) {
             res.status(201).json({ message: "Event already exists" });
+            return;
         }
         yield event1.save();
         yield event2.save();
         //const allEvents: IEvent[] = await Event.find()
         res
             .status(201)
-            .json({ message: "Event added" }); //, event: newEvent, events: allEvents })
+            .json({ message: "Event added", Event1: event1, Event2: event2 });
     }
     catch (error) {
         throw error;
@@ -79,7 +77,7 @@ const updateEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         yield event_1.default.findOneAndUpdate(query2, { time: body.time });
         res
             .status(200)
-            .json({ message: "Event updated" });
+            .json({ message: "Events updated", Event1: query1, Event2: query2 });
     }
     catch (error) {
         throw error;
@@ -105,7 +103,7 @@ const deleteEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         };
         yield event_1.default.findOneAndDelete(query1);
         yield event_1.default.findOneAndDelete(query2);
-        res.status(200).json({ message: "Event deleted" });
+        res.status(200).json({ message: "Events deleted", Event1: query1, Event2: query2 });
     }
     catch (error) {
         throw error;

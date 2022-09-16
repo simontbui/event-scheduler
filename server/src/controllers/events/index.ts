@@ -14,8 +14,7 @@ const getEvents = async (req: Request, res: Response): Promise<void> => {
 const addEvent = async (req: Request, res: Response): Promise<void> => {
     try {
         const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "time">
-        console.log(req.body)
-        console.log("===================================")
+
         const event1 = new Event({
             firstName1: body.firstName1,
             lastName1: body.lastName1,
@@ -32,10 +31,10 @@ const addEvent = async (req: Request, res: Response): Promise<void> => {
             time: body.time, 
         })
 
-        const existingEvent = await Event.findOne({event1})
-        console.log(existingEvent)
+        const existingEvent = await Event.findOne(body)
         if (existingEvent) {
             res.status(201).json({ message: "Event already exists" })
+            return
         } 
 
         await event1.save()
@@ -44,7 +43,7 @@ const addEvent = async (req: Request, res: Response): Promise<void> => {
 
         res
             .status(201)
-            .json({ message: "Event added" }) //, event: newEvent, events: allEvents })
+            .json({ message: "Event added", Event1: event1, Event2: event2 }) 
     } catch (error) {
         throw error
     }
@@ -73,7 +72,7 @@ const updateEvent = async (req: Request, res: Response): Promise<void> => {
 
         res
         .status(200)
-        .json({ message: "Event updated" }) 
+        .json({ message: "Events updated", Event1: query1, Event2: query2 }) 
 
     } catch (error) {
         throw error
@@ -103,7 +102,7 @@ const deleteEvent = async (req: Request, res: Response): Promise<void> => {
         await Event.findOneAndDelete(query1)
         await Event.findOneAndDelete(query2)
 
-        res.status(200).json({ message: "Event deleted"})
+        res.status(200).json({ message: "Events deleted", Event1: query1, Event2: query2})
 
     } catch (error) {
         throw error

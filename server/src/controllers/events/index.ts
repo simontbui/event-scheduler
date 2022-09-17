@@ -2,9 +2,25 @@ import { Response, Request } from "express"
 import { IEvent } from "../../types/event"
 import Event from "../../models/event"
 
-const getEvents = async (req: Request, res: Response): Promise<void> => {
+const getAllEvents = async (req: Request, res: Response): Promise<void> => {
     try {
         const events: IEvent[] = await Event.find()
+        res.status(200).json({ events })
+    } catch (error) {
+        throw error
+    }
+}
+
+const getEvents = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "startTime" | "endTime">
+
+        const query = {
+            firstName1: body.firstName1,
+            lastName1: body.lastName1,
+        }
+
+        const events: IEvent[] = await Event.find(query)
         res.status(200).json({ events })
     } catch (error) {
         throw error
@@ -116,4 +132,4 @@ const deleteEvent = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export { getEvents, addEvent, updateEvent, deleteEvent }
+export { getAllEvents, getEvents, addEvent, updateEvent, deleteEvent }

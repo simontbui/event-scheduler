@@ -16,9 +16,10 @@ function GetEvent() {
             <button onClick={handleGetEvent}>GET</button>
             {events.length > 0 &&
                 <div>
-                    <p>{events[0].firstName1}</p>
-                    <p>{events[0].lastName1}</p>
-                    <p>{events[0].time}</p>
+                    <span>{events[0].firstName1 + " "}</span>
+                    <span>{events[0].lastName1 + " "}</span>
+                    <span>{events[0].startTime + " "}</span>
+                    <span>{events[0].endTime}</span>
                 </div>
             }
         </div>

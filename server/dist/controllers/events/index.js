@@ -12,11 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteEvent = exports.updateEvent = exports.addEvent = exports.getEvents = void 0;
+exports.deleteEvent = exports.updateEvent = exports.addEvent = exports.getEvents = exports.getAllEvents = void 0;
 const event_1 = __importDefault(require("../../models/event"));
-const getEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const events = yield event_1.default.find();
+        res.status(200).json({ events });
+    }
+    catch (error) {
+        throw error;
+    }
+});
+exports.getAllEvents = getAllEvents;
+const getEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const body = req.body;
+        const query = {
+            firstName1: body.firstName1,
+            lastName1: body.lastName1,
+        };
+        const events = yield event_1.default.find(query);
         res.status(200).json({ events });
     }
     catch (error) {

@@ -9,6 +9,7 @@ export const getEvent = async(): Promise<AxiosResponse<IEvent[]>> => {
         )
         //console.log("======================")
         //console.log(event.data.event)
+        //"firstName1":"Simon","lastName1":"BuiABC"
         return event.data.events
     } catch (error) {
         throw error

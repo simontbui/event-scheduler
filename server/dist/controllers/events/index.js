@@ -66,16 +66,20 @@ const updateEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             firstName1: body.firstName1,
             lastName1: body.lastName1,
             firstName2: body.firstName2,
-            lastName2: body.lastName2
+            lastName2: body.lastName2,
+            startTime: body.startTime,
+            endTime: body.endTime
         };
         const query2 = {
             firstName1: body.firstName2,
             lastName1: body.lastName2,
             firstName2: body.firstName1,
-            lastName2: body.lastName1
+            lastName2: body.lastName1,
+            startTime: body.startTime,
+            endTime: body.endTime
         };
-        yield event_1.default.findOneAndUpdate(query1, { startTime: body.startTime, endTime: body.endTime });
-        yield event_1.default.findOneAndUpdate(query2, { startTime: body.startTime, endTime: body.endTime });
+        yield event_1.default.findOneAndUpdate(query1, { startTime: body.newStartTime, endTime: body.newEndTime });
+        yield event_1.default.findOneAndUpdate(query2, { startTime: body.newStartTime, endTime: body.newEndTime });
         res
             .status(200)
             .json({ message: "Events updated", Event1: query1, Event2: query2 });

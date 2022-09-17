@@ -5,4 +5,6 @@ export interface IEvent {
     lastName2: string;
     startTime: Date;
     endTime: Date;
+    newStartTime?: Date;
+    newEndTime?: Date;
 }

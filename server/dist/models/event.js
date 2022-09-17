@@ -6,9 +6,10 @@ const eventSchema = new mongoose_1.Schema({
     lastName1: { type: String, required: true },
     firstName2: { type: String, required: true },
     lastName2: { type: String, required: true },
-    time: { type: Date, required: true },
+    startTime: { type: Date, required: true },
+    endTime: { type: Date, required: true }
 });
 eventSchema.index({ 'firstName1': 1, 'lastName1': 1,
     'firstName2': 1, 'lastName2': 1,
-    'time': 1 }, { unique: true });
+    'startTime': 1, 'endTime': 1 }, { unique: true });
 exports.default = (0, mongoose_1.model)("Event", eventSchema);

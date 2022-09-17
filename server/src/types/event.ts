@@ -3,5 +3,6 @@ export interface IEvent {
     lastName1: string;
     firstName2: string;
     lastName2: string;
-    time: Date;
+    startTime: Date;
+    endTime: Date;
 }

@@ -13,14 +13,15 @@ const getEvents = async (req: Request, res: Response): Promise<void> => {
 
 const addEvent = async (req: Request, res: Response): Promise<void> => {
     try {
-        const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "time">
+        const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "startTime" | "endTime">
 
         const event1 = new Event({
             firstName1: body.firstName1,
             lastName1: body.lastName1,
             firstName2: body.firstName2,
             lastName2: body.lastName2,
-            time: body.time, 
+            startTime: body.startTime, 
+            endTime: body.endTime, 
         })
 
         const event2 = new Event({
@@ -28,7 +29,8 @@ const addEvent = async (req: Request, res: Response): Promise<void> => {
             lastName1: body.lastName2,
             firstName2: body.firstName1,
             lastName2: body.lastName1,
-            time: body.time, 
+            startTime: body.startTime, 
+            endTime: body.endTime,  
         })
 
         const existingEvent = await Event.findOne(body)
@@ -39,7 +41,6 @@ const addEvent = async (req: Request, res: Response): Promise<void> => {
 
         await event1.save()
         await event2.save()
-        //const allEvents: IEvent[] = await Event.find()
 
         res
             .status(201)
@@ -51,7 +52,7 @@ const addEvent = async (req: Request, res: Response): Promise<void> => {
 
 const updateEvent = async (req: Request, res: Response): Promise<void> => {
     try {
-        const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "time">
+        const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "startTime" | "endTime">
 
         const query1 = {
             firstName1: body.firstName1,
@@ -67,8 +68,8 @@ const updateEvent = async (req: Request, res: Response): Promise<void> => {
             lastName2: body.lastName1
         }
 
-        await Event.findOneAndUpdate(query1, { time: body.time })
-        await Event.findOneAndUpdate(query2, { time: body.time })
+        await Event.findOneAndUpdate(query1, { startTime: body.startTime, endTime: body.endTime })
+        await Event.findOneAndUpdate(query2, { startTime: body.startTime, endTime: body.endTime })
 
         res
         .status(200)
@@ -81,14 +82,15 @@ const updateEvent = async (req: Request, res: Response): Promise<void> => {
 
 const deleteEvent = async (req: Request, res: Response): Promise<void> => {
     try {
-        const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "time">
+        const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "startTime" | "endTime">
         
         const query1 = {
             firstName1: body.firstName1,
             lastName1: body.lastName1,
             firstName2: body.firstName2,
             lastName2: body.lastName2,
-            time: body.time
+            startTime: body.startTime,
+            endTime: body.endTime
         }
        
         const query2 = {
@@ -96,7 +98,8 @@ const deleteEvent = async (req: Request, res: Response): Promise<void> => {
             lastName1: body.lastName2,
             firstName2: body.firstName1,
             lastName2: body.lastName1,
-            time: body.time
+            startTime: body.startTime,
+            endTime: body.endTime
         }
 
         await Event.findOneAndDelete(query1)

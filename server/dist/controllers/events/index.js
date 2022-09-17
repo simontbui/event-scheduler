@@ -32,14 +32,16 @@ const addEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             lastName1: body.lastName1,
             firstName2: body.firstName2,
             lastName2: body.lastName2,
-            time: body.time,
+            startTime: body.startTime,
+            endTime: body.endTime,
         });
         const event2 = new event_1.default({
             firstName1: body.firstName2,
             lastName1: body.lastName2,
             firstName2: body.firstName1,
             lastName2: body.lastName1,
-            time: body.time,
+            startTime: body.startTime,
+            endTime: body.endTime,
         });
         const existingEvent = yield event_1.default.findOne(body);
         if (existingEvent) {
@@ -48,7 +50,6 @@ const addEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         yield event1.save();
         yield event2.save();
-        //const allEvents: IEvent[] = await Event.find()
         res
             .status(201)
             .json({ message: "Event added", Event1: event1, Event2: event2 });
@@ -73,8 +74,8 @@ const updateEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             firstName2: body.firstName1,
             lastName2: body.lastName1
         };
-        yield event_1.default.findOneAndUpdate(query1, { time: body.time });
-        yield event_1.default.findOneAndUpdate(query2, { time: body.time });
+        yield event_1.default.findOneAndUpdate(query1, { startTime: body.startTime, endTime: body.endTime });
+        yield event_1.default.findOneAndUpdate(query2, { startTime: body.startTime, endTime: body.endTime });
         res
             .status(200)
             .json({ message: "Events updated", Event1: query1, Event2: query2 });
@@ -92,14 +93,16 @@ const deleteEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             lastName1: body.lastName1,
             firstName2: body.firstName2,
             lastName2: body.lastName2,
-            time: body.time
+            startTime: body.startTime,
+            endTime: body.endTime
         };
         const query2 = {
             firstName1: body.firstName2,
             lastName1: body.lastName2,
             firstName2: body.firstName1,
             lastName2: body.lastName1,
-            time: body.time
+            startTime: body.startTime,
+            endTime: body.endTime
         };
         yield event_1.default.findOneAndDelete(query1);
         yield event_1.default.findOneAndDelete(query2);

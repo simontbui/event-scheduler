@@ -3,7 +3,6 @@ import AddEvent from './AddEvent'
 import GetEvent from './GetEvent'
 import CalendarUI from './CalendarUI'
 import { getEvent } from '../API'
-import { Calendar } from '@fullcalendar/core';
 
 const App: React.FC = () => {
   const [events, setEvents] = useState<IEventCalendar[]>([])
@@ -38,7 +37,14 @@ const App: React.FC = () => {
   }
 
   return (
-      <div>
+      <div className="parent-container">
+        <div className="calendar-div">
+          <CalendarUI
+            events={events}
+            fullName={fullName}
+          />
+        </div>
+        <div className="add-get-forms">
           <AddEvent/>
           <GetEvent
             handleGetNameChange={handleGetNameChange}
@@ -46,10 +52,7 @@ const App: React.FC = () => {
             events={events}
             fullName={fullName}
           />
-          <CalendarUI
-            events={events}
-            fullName={fullName}
-          />
+        </div>
       </div>
   );
 }

@@ -6,7 +6,8 @@ import "react-datepicker/dist/react-datepicker.css"
 function AddEvent() {
     return (
         <>
-        <div>
+        <p>Schedule Meeting</p>
+        <div className="add-first-person">
             <input
                 type='text' placeholder="First Name"
                 id="firstName1"
@@ -16,7 +17,7 @@ function AddEvent() {
                 id="lastName1"
             />
         </div>
-        <div>
+        <div className="add-second-person">
             <input
                 type='text' placeholder="First Name"
                 id="firstName1"

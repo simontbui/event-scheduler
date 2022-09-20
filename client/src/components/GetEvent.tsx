@@ -10,6 +10,7 @@ type Props = {
 const GetEvent: React.FC<Props> = ({ handleGetNameChange, handleSubmit, events, fullName }) => {
     return (
         <div style={{marginTop: "50px"}}>
+            <p>Check Someone's Schedule</p>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <input
                     id="firstName" 

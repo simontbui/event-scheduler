@@ -25,20 +25,20 @@ const CalendarUI: React.FC<Props> = ({ events, fullName }) => {
     });
 
     return (
-        <div>
+        <>
             {events.length > 0 &&
-                <h1 style={{ textAlign: "center"}}>{`${fullName}'s Calendar`}</h1>
+                <h3 style={{ textAlign: "center"}}>{`${fullName}'s Calendar`}</h3>
         
             }
             <Calendar 
                 localizer={localizer} 
                 startAccessor="start" 
                 endAccessor="end" 
-                style={{ height: 500, margin: "50px" }}
+                style={{ height: 500, width: 800, margin: "75px" }}
                 events={events}
                 views={["month", "agenda"]}
             />
-        </div>
+        </>
     )
 
 } 

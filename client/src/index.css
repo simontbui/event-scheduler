@@ -1,0 +1,26 @@
+body {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.parent-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.add-get-forms {
+    margin-top: 75px;
+    text-align: center;
+}
+
+.add-first-person, .add-second-person {
+    margin-bottom: 10px;
+}
+
+.calendar-div {
+}

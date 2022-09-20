@@ -2,15 +2,10 @@ import axios, { AxiosResponse } from 'axios'
 
 const APIURI: string = "http://localhost:8000"
 
-export const getEvent = async(): Promise<AxiosResponse<IEvent[]>> => {
+export const getEvent = async(firstName1: string, lastName1: string): Promise<AxiosResponse<{events: IEvent[]}>> => {
     try {
-        const event: AxiosResponse = await axios.get(
-            APIURI + '/events'
-        )
-        //console.log("======================")
-        //console.log(event.data.event)
-        //"firstName1":"Simon","lastName1":"BuiABC"
-        return event.data.events
+        const events = await axios.get(`${APIURI}/events/${firstName1}/${lastName1}`)
+        return events
     } catch (error) {
         throw error
     }

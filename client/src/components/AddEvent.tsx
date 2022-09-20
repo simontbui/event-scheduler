@@ -1,4 +1,7 @@
 import React from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"
+
 
 function AddEvent() {
     return (
@@ -24,13 +27,16 @@ function AddEvent() {
             />
         </div>
         <div>
-            <input
-                type="datetime-local" placeholder="Start Time"
-                id="startTime"
+            <DatePicker 
+            placeholderText="Start Date" 
+            showTimeSelect 
+            onChange={(e) => (console.log(e))}
             />
-            <input
-                type="datetime-local" placeholder="End Time"
-                id="endTime"
+
+            <DatePicker 
+            placeholderText="End Date" 
+            showTimeSelect
+            onChange={(e) => (console.log(e))}
             />
         </div>
         </>

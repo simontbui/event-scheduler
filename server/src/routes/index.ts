@@ -5,7 +5,7 @@ const router: Router = Router()
 
 router.get("/all-events", getAllEvents)
 
-router.get("/events", getEvents) 
+router.get("/events/:firstName1/:lastName1", getEvents) 
 
 router.post("/add-event", addEvent)
 

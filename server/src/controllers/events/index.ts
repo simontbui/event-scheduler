@@ -13,11 +13,11 @@ const getAllEvents = async (req: Request, res: Response): Promise<void> => {
 
 const getEvents = async (req: Request, res: Response): Promise<void> => {
     try {
-        const body = req.body as Pick<IEvent, "firstName1" | "lastName1" | "firstName2" | "lastName2" | "startTime" | "endTime">
+        const params = req.params as Pick<IEvent, "firstName1" | "lastName1">
 
         const query = {
-            firstName1: body.firstName1,
-            lastName1: body.lastName1,
+            firstName1: params.firstName1,
+            lastName1: params.lastName1,
         }
 
         const events: IEvent[] = await Event.find(query)

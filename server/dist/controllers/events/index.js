@@ -26,10 +26,10 @@ const getAllEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.getAllEvents = getAllEvents;
 const getEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const body = req.body;
+        const params = req.params;
         const query = {
-            firstName1: body.firstName1,
-            lastName1: body.lastName1,
+            firstName1: params.firstName1,
+            lastName1: params.lastName1,
         };
         const events = yield event_1.default.find(query);
         res.status(200).json({ events });

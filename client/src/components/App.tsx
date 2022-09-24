@@ -79,17 +79,15 @@ const App: React.FC = () => {
         const endTime: Date = e.target[5].value
 
         addEvent({firstName1, lastName1, firstName2, lastName2, startTime, endTime})
-            .then(res => { 
-                const newEvent: IEventCalendar = {
-                    "title": `${res.data.Event1.firstName1} ${res.data.Event1.firstName2}`,
-                    "start": new Date(res.data.Event1.startTime),
-                    "end": new Date(res.data.Event1.endTime)
-                }
-                if (events) {
-                    setEvents([...events, newEvent])
-                } else {
-                  setEvents([newEvent])
-                }
+            .then(res => { console.log(events)
+                if (events && events.length) {
+                    const newEvent: IEventCalendar = {
+                        "title": `${res.data.Event1.firstName2} ${res.data.Event1.lastName2}`,
+                        "start": new Date(res.data.Event1.startTime),
+                        "end": new Date(res.data.Event1.endTime)
+                    }
+                        setEvents([...events, newEvent])
+                } 
             })
             .catch(err => console.log(err))
     }

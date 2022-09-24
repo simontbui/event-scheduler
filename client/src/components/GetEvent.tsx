@@ -22,7 +22,8 @@ const GetEvent: React.FC<Props> = ({ handleGetNameChange, handleSubmit, events, 
                     type="text" placeholder="Last Name"
                     onChange={(e) => handleGetNameChange(e)}
                 />
-                <input type="submit" value="Submit"/>
+                <button>Submit</button>
+                {/* <input type="submit" value="Submit"/> */}
             </form>
         </div>
     )

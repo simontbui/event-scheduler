@@ -85,8 +85,11 @@ const App: React.FC = () => {
                     "start": new Date(res.data.Event1.startTime),
                     "end": new Date(res.data.Event1.endTime)
                 }
-                
-                setEvents([...events, newEvent])
+                if (events) {
+                    setEvents([...events, newEvent])
+                } else {
+                  setEvents([newEvent])
+                }
             })
             .catch(err => console.log(err))
     }
